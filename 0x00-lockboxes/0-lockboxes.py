@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Lockboxes module"""
 
+
 def join(t, r):
     """join function"""
     res = []
