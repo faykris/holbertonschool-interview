@@ -2,25 +2,18 @@
 """Lockboxes module"""
 
 
-def join(t, r):
-    """join function"""
-    res = []
-    for e in r:
-        res += t[e]
-    return res
-
-
 def canUnlockAll(boxes):
     """canUnlockAll function"""
     i = 0
-    total = list(set(boxes[0]) | {0})
-    added = True
-    while added:
-        added = False
-        for j in join(boxes, total[i:]):
-            if j not in total:
-                total.append(j)
-                i += 1
-                added = True
+    for box in boxes:
+        open_box = False
+        if i != 0:
+            for j in range(len(boxes)):
+                if i in boxes[j] and i != j:
+                    open_box = True
+                    break
+            if open_box is False:
+                return False
+        i += 1
+    return True
 
-    return len(total) == len(boxes)
