@@ -14,7 +14,6 @@ def minOperations(n):
     if type(n) == int and n > 0:
         for i in range(n):
             if len(buffer) != n:
-                ope += 1
                 if copied is False:
                     # Copy all
                     copy = buffer
@@ -24,4 +23,7 @@ def minOperations(n):
                     buffer += copy
                     if n % len(buffer) == 0:
                         copied = False
+                ope += 1
+            else:
+                break
     return ope
