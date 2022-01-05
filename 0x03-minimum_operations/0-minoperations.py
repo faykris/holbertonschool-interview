@@ -12,6 +12,8 @@ def minOperations(n):
     copied = False
 
     if n > 0:
+        if n == 1:
+            return n
         for i in range(n):
             if len(buffer) != n:
                 ope += 1
