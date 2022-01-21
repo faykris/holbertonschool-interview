@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lists.h"
-#include <limits.h>
 
+/**
+ * is_palindrome - checks if the linked list is palindrome or not
+ * @head: linked list head address
+ *
+ * Return: 1 if the linked list is palindrome, otherwise 0
+ */
 int is_palindrome(listint_t **head)
 {
     listint_t *temp;
