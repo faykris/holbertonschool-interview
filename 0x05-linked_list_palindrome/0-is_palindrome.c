@@ -7,7 +7,7 @@ int is_palindrome(listint_t **head)
 {
     listint_t *temp;
     int i = 0, j = 0, even_or_odd = 0;
-    int num_array[1000];
+    int num_array[10000];
 
     if (!head)
         return (0);
