@@ -9,9 +9,6 @@ int is_palindrome(listint_t **head)
     int i = 0, j = 0, even_or_odd = 0;
     int num_array[10000];
 
-    if (!head)
-        return (0);
-
     if (!*head)
         return (1);
 
