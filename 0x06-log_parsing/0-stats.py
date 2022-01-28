@@ -1,38 +1,44 @@
 #!/usr/bin/python3
-""" Python script that reads stdin line by line and computes metrics """
+"""script that reads stdin line by line and computes metrics"""
+
 
 import sys
 
-status = {'200': 0, '301': 0, '400': 0, '401': 0,
-          '403': 0, '404': 0, '405': 0, '500': 0}
-
-t_file_size = 0
 count = 0
+fileSize = 0
+statCount = {"200": 0, "301": 0, "400": 0, "401": 0,
+             "403": 0, "404": 0, "405": 0, "500": 0}
+
 try:
     for line in sys.stdin:
-        args = line.split(" ")
+        count += 1
+        split = line.split(" ")
+        try:
+            status = split[-2]
+            fileSize += int(split[-1])
+            if status in statCount:
+                statCount[status] += 1
+        except Exception:
+            pass
 
-        if len(args) > 2:
-            status_code = args[-2]
-            file_size = int(args[-1])
+        if count % 10 == 0:
+            print("File size: {}".format(fileSize))
+            for key in sorted(statCount.keys()):
+                if statCount[key] == 0:
+                    continue
+                print("{}: {}".format(key, statCount[key]))
 
-            if status_code in status:
-                status[status_code] += 1
-            t_file_size += file_size
-            count += 1
+    else:
+        print("File size: {}".format(fileSize))
+        for key in sorted(statCount.keys()):
+            if statCount[key] == 0:
+                continue
+            print("{}: {}".format(key, statCount[key]))
 
-            if count == 10:
-                print("File size: {:d}".format(t_file_size))
-                for key, value in sorted(status.items()):
-                    if value != 0:
-                        print("{}: {}".format(key, value))
-                count = 0
-
-except KeyboardInterrupt:
-    pass
-
-finally:
-    print("File size: {:d}".format(t_file_size))
-    for key, value in sorted(status.items()):
-        if value != 0:
-            print("{}: {}".format(key, value))
+except (KeyboardInterrupt, SystemExit):
+    print("File size: {}".format(fileSize))
+    for key in sorted(statCount.keys()):
+        if statCount[key] == 0:
+            continue
+        print("{}: {}".format(key, statCount[key]))
+    raise
