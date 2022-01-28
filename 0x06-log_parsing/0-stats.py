@@ -10,7 +10,7 @@ t_file_size = 0
 count = 0
 try:
     for line in sys.stdin:
-        args = line.split()
+        args = line.split(" ")
 
         if len(args) > 2:
             status_code = args[-2]
