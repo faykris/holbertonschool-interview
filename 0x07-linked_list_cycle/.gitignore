@@ -1,0 +1,5 @@
+.idea
+.vscode
+*main.c
+cycle
+0-linked_lists.c
