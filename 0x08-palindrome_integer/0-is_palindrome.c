@@ -10,22 +10,14 @@
 int is_palindrome(unsigned long n)
 {
 	char text[20];
-	size_t i = 0, j = 0, is_palindrome = 1, t_length = 0;
+	size_t i = 0, j = 0, t_length = 0;
 
-	sprintf(text, "%ld", n);
+	sprintf(text, "%lu", n);
 	t_length = strlen(text);
 	j = t_length - 1;
 
-	while (i < t_length / 2)
-	{
+	for (; i < (t_length / 2); i++, j--)
 		if (text[i] != text[j])
-		{
-			is_palindrome = 0;
-			break;
-		}
-		i++;
-		j--;
-	}
-
-	return (is_palindrome);
+			return (0);
+	return (1);
 }

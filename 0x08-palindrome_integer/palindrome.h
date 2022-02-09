@@ -9,4 +9,6 @@
 /* Palindrome prototype function */
 int is_palindrome(unsigned long n);
 
+/*int nsprintf(int (*f)sprintf());*/
+
 #endif /* _PALINDROME_H_ */
