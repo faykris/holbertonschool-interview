@@ -9,15 +9,15 @@
  */
 int is_palindrome(unsigned long n)
 {
-	char text[20];
-	size_t i = 0, j = 0, t_length = 0;
+	int ltr_number = n, rtl_number = 0, modulus = 0;
 
-	sprintf(text, "%lu", n);
-	t_length = strlen(text);
-	j = t_length - 1;
+	while (n != 0)
+	{
+		modulus = n % 10;
+		rtl_number *= 10;
+		rtl_number += modulus;
+		n /= 10;
+	}
 
-	for (; i < (t_length / 2); i++, j--)
-		if (text[i] != text[j])
-			return (0);
-	return (1);
+	return (ltr_number == rtl_number ? 1 : 0);
 }
