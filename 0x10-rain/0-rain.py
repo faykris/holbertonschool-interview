@@ -8,21 +8,15 @@ def rain(walls):
     """rain function"""
     if len(walls) == 0 or type(walls) != list:
         return 0
+    left = [0] * len(walls)
+    right = [0] * len(walls)
     water = 0
-    i = 0
-    while i < len(walls) - 1:
-        if (i == 0 and walls[i] != 0) or\
-                (i != 0 and walls[i + 1] == 0 and i + 1 != len(walls) - 1):
-            start = i
-            i += 1
-            mul = 1
-            while i < len(walls) - 1 and walls[i + 1] == 0:
-                mul += 1
-                i += 1
-            if i + 1 < len(walls) - 1:
-                if walls[i + 1] >= walls[start]:
-                    water += walls[start] * mul
-                else:
-                    water += walls[i + 1] * mul
-        i += 1
+    left[0] = walls[0]
+    for i in range(1, len(walls)):
+        left[i] = max(left[i - 1], walls[i])
+    right[len(walls) - 1] = walls[len(walls) - 1]
+    for i in range(len(walls) - 2, -1, -1):
+        right[i] = max(right[i + 1], walls[i])
+    for i in range(0, len(walls)):
+        water += min(left[i], right[i]) - walls[i]
     return water
