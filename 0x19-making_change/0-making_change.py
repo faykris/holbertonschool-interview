@@ -5,16 +5,21 @@
 def makeChange(coins, total):
     """makeChange - function"""
 
-    sum = 0
-    if (total <= 0):
+    if total <= 0:
         return 0
-    coins.sort(reverse=True)
-    for i in coins:
-        if (total < i):
-            pass
-        q, r = divmod(total, i)
-        total = r
-        sum += q
-    if (total != 0):
+
+    if (coins is None or len(coins) == 0):
         return -1
-    return sum
+
+    change = 0
+    my_coins = sorted(coins, reverse=True)
+    money_left = total
+
+    for coin in my_coins:
+        while (money_left % coin >= 0 and money_left >= coin):
+            change += int(money_left / coin)
+            money_left = money_left % coin
+
+    change = change if money_left == 0 else -1
+
+    return change
