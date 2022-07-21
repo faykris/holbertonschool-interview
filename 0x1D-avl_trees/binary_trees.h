@@ -7,7 +7,7 @@
 #include <limits.h>
 
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
-#define ABS(x) ((x) > 0 ? (x) : (-(x))
+#define ABS(x) ((x) > 0 ? (x) : (-(x)))
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -29,6 +29,5 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s avl_t;
 
 int binary_tree_is_avl(const binary_tree_t *tree);
-int is_avl(const binary_tree_t *tree, int min, int max, int *height);
 
 #endif /* _BINARY_TREE_H_ */
